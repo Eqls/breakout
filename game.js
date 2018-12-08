@@ -11,10 +11,10 @@ let timer = Date.now()
 let fps = 0
 let displayFps = 0
 let x = canvas.width / 2
-let y = canvas.height / 2
+let y = canvas.height / 1.5
 let direction = [1, -1]
-let dx = 2 * direction[Math.floor(Math.random() * direction.length)]
-let dy = 4 * direction[Math.floor(Math.random() * direction.length)]
+let dx = 1 * direction[Math.floor(Math.random() * direction.length)]
+let dy = 2 * direction[Math.floor(Math.random() * direction.length)]
 console.log(`${dx} ${dy}`)
 let paddleX = (canvas.width - PADDLE_WIDTH) / 2
 let rightPressed = false
@@ -31,8 +31,8 @@ document.addEventListener('keyup', keyUpHandler, false)
 function resetGame() {
   x = canvas.width / 2
   y = canvas.height / 2
-  dx = 2 * direction[Math.floor(Math.random() * direction.length)]
-  dy = 4 * direction[Math.floor(Math.random() * direction.length)]
+  dx = 1 * direction[Math.floor(Math.random() * direction.length)]
+  dy = 2 * direction[Math.floor(Math.random() * direction.length)]
   paddleX = (canvas.width - PADDLE_WIDTH) / 2
   rightPressed = false
   leftPressed = false
@@ -95,9 +95,9 @@ function drawPaddle() {
 
 function ajustBallMovingPos() {
   if (
-    x + dx >= paddleX - PADDLE_WIDTH / 2 &&
-    x + dx <= paddleX + PADDLE_WIDTH / 2 &&
-    y + dy > canvas.width - PADDLE_HEIGHT - 10
+    x + dx >= paddleX &&
+    x + dx <= paddleX + PADDLE_WIDTH &&
+    y + dy >= canvas.height - BALL_RADIUS - PADDLE_HEIGHT
   ) {
     console.log('impact')
     dx = -dx
@@ -118,9 +118,9 @@ function ajustBallMovingPos() {
 
 function movePaddle() {
   if (rightPressed && paddleX < canvas.width - PADDLE_WIDTH) {
-    paddleX += 14
+    paddleX += 4
   } else if (leftPressed && paddleX > 0) {
-    paddleX -= 14
+    paddleX -= 4
   }
 }
 
